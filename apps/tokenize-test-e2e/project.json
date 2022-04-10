@@ -1,0 +1,28 @@
+{
+  "root": "apps/tokenize-test-e2e",
+  "sourceRoot": "apps/tokenize-test-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/tokenize-test-e2e/cypress.json",
+        "devServerTarget": "tokenize-test:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "tokenize-test:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/tokenize-test-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["tokenize-test"]
+}
