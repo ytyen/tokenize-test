@@ -10,7 +10,7 @@ import { timer, map } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  socket = io('ws://localhost:4200/orderbook-ws')
+  socket = io('wss://tokenize-test-yen-api.herokuapp.com/orderbook-ws')
   orderbook: Orderbook = { bid: [], ask: [] };
 
   totalAskSize = 0;
@@ -19,7 +19,7 @@ export class AppComponent {
   timer$ = timer(0, 1000).pipe(map(x => new Date()));
 
   constructor(private http: HttpClient) {
-    this.http.get<Orderbook>('/api/orderbook').subscribe(res => {
+    this.http.get<Orderbook>('https://tokenize-test-yen-api.herokuapp.com/api/orderbook').subscribe(res => {
       this.orderbook = res;
       this.totalAskSize = this.getTotalSize(res.ask);
       this.totalBidAmount = this.getTotalAmount(res.bid);
