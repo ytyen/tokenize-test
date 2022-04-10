@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 import { Server, Socket } from 'socket.io';
 import { AppService } from './app.service';
 
-@WebSocketGateway({ namespace: 'orderbook-ws' })
+@WebSocketGateway({ namespace: 'orderbook-ws', cors: true })
 export class OrderbookGateway {
   @WebSocketServer()
   server: Server;
